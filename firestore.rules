@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'YOUR_ADMIN_EMAIL@example.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function validEnquiry() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['name', 'email', 'phone', 'company', 'service', 'message', 'createdAt', 'status'])
+        && data.keys().hasOnly(['name', 'email', 'phone', 'company', 'service', 'message', 'createdAt', 'status'])
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 100
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 254
+        && data.email.matches('^[^@ ]+@[^@ ]+\\.[^@ ]+$')
+        && data.phone is string && data.phone.size() <= 20
+        && data.company is string && data.company.size() <= 120
+        && data.service is string && data.service.size() >= 1 && data.service.size() <= 100
+        && data.message is string && data.message.size() >= 1 && data.message.size() <= 3000
+        && data.createdAt == request.time
+        && data.status == 'new';
+    }
+
+    match /enquiries/{enquiryId} {
+      allow create: if validEnquiry();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

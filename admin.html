@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060E1E">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,20,1;9..144,600,20,1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Enquiries | NTS Technologies</title>
+</head>
+<body>
+  <header class="admin-header"><a class="admin-brand" href="index.html"><img src="assets/logo.svg" alt="NTS Technologies logo"><span>NTS <i>Technologies</i></span></a><span class="admin-label"><i></i> Private workspace</span></header>
+  <main class="admin-main">
+    <section class="login-panel" id="login-panel" aria-labelledby="login-title">
+      <span class="admin-kicker">NTS TECHNOLOGIES · ADMIN</span><h1 id="login-title">Welcome back.</h1><p>Sign in to view and manage incoming enquiries.</p>
+      <form id="login-form"><label>Email address<input type="email" name="email" autocomplete="username" required></label><label>Password<input type="password" name="password" autocomplete="current-password" required></label><button type="submit" class="admin-button admin-button-primary">Sign in <span>↗</span></button><p id="login-status" class="admin-status" role="status" aria-live="polite"></p></form>
+      <p class="admin-back"><a href="index.html">← Back to website</a></p>
+    </section>
+    <section class="dashboard" id="dashboard" hidden>
+      <div class="dashboard-heading"><div><span class="admin-kicker">NTS TECHNOLOGIES · ADMIN</span><h1>Enquiries<span class="heading-period">.</span></h1></div><button id="logout-button" class="admin-button admin-button-secondary">Sign out <span>↗</span></button></div>
+      <div class="dashboard-toolbar"><p id="signed-in-as" class="signed-in-as"></p><div class="summary-counters"><div><span>Total enquiries</span><b id="total-count">0</b></div><div><span>New enquiries</span><b id="new-count">0</b></div></div></div>
+      <div class="inbox-controls"><label class="search-control"><span class="sr-only">Search enquiries</span><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search name, email, company..." autocomplete="off"></label><label class="filter-control"><span class="sr-only">Filter by status</span><select id="status-filter"><option value="all">All statuses</option><option value="new">New</option><option value="contacted">Contacted</option><option value="closed">Closed</option></select></label><button id="export-button" class="admin-button admin-button-secondary export-button">↓ <span>Export CSV</span></button></div>
+      <p id="data-status" class="data-status" role="status" aria-live="polite">Connecting to inbox...</p>
+      <div class="table-wrap"><table><thead><tr><th>Received</th><th>Contact</th><th>Company</th><th>Interested in</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="enquiry-rows"></tbody></table><div class="empty-state" id="empty-state" hidden><span>Nothing here yet.</span><p>New enquiries will appear here in real time.</p></div></div>
+    </section>
+  </main>
+  <dialog class="message-dialog" id="message-dialog"><div class="dialog-heading"><span>Enquiry message</span><button id="close-dialog" aria-label="Close message">×</button></div><p id="dialog-meta" class="dialog-meta"></p><p id="dialog-message" class="dialog-message"></p><a id="dialog-email" class="dialog-email"></a></dialog>
+  <footer class="admin-footer"><span>© <span id="admin-year"></span> NTS Technologies</span><span>Next Tech &amp; AI Intelligence Systems</span></footer>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
