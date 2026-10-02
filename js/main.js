@@ -344,7 +344,7 @@ function initEnquiryForm() {
       showStatus("Thank you. Your enquiry is on its way. We'll be in touch soon.", "success");
     } catch (error) {
       if (error.message !== "not-configured") console.error("Enquiry submission failed:", error);
-      showStatus(error.message === "not-configured" ? "The enquiry form is being set up. Please contact @appandwebservices in the meantime." : "We couldn't send that just now. Please try again shortly or contact @appandwebservices.", "error");
+      showStatus(error.message === "not-configured" ? "The enquiry form is being set up. Please try again shortly." : "We couldn't send that just now. Please try again shortly.", "error");
     } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = originalLabel;
