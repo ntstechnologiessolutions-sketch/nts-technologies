@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
-Sitemap: https://ntstechnologiessolutions-sketch.github.io/nts-technologies/sitemap.xml
+Sitemap: https://nts-technologies.web.app/sitemap.xml
