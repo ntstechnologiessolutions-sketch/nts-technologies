@@ -3,7 +3,10 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
       return request.auth != null
-        && request.auth.token.email == 'ntstechnologiessolutions@gmail.com';
+        && request.auth.token.email in [
+          'ntstechnologiessolutions@gmail.com',
+          'ntstechnologies@admin.com'
+        ];
     }
 
     function validEnquiry() {

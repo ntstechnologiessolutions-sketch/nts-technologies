@@ -1,4 +1,4 @@
-import { firebaseConfig, ADMIN_EMAIL } from "./firebase-config.js";
+import { firebaseConfig, ADMIN_EMAILS } from "./firebase-config.js";
 
 const loginPanel = document.querySelector("#login-panel");
 const dashboard = document.querySelector("#dashboard");
@@ -79,7 +79,9 @@ function showError(error) {
 }
 
 async function showDashboard(user) {
-  if (user.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+  const email = user.email?.toLowerCase();
+  const isAdmin = ADMIN_EMAILS.some((adminEmail) => adminEmail.toLowerCase() === email);
+  if (!isAdmin) {
     setLoginMessage("This account is not authorised for the admin dashboard.");
     await firebaseModules.signOut(auth);
     return;
