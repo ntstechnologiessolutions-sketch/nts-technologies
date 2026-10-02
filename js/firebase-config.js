@@ -8,4 +8,4 @@ export const firebaseConfig = {
   appId: "1:447717027374:web:1fdd8e1c04b7d2e62eb9bf"
 };
 
-export const ADMIN_EMAIL = 'ntstechnologiessystems@gmail.com';
+export const ADMIN_EMAIL = 'ntstechnologiessolutions@gmail.com';
