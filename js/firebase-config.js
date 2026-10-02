@@ -1,13 +1,11 @@
-// Replace these values with your Firebase web app configuration before publishing.
-// These client-side values are public; Firestore security rules enforce access.
+// Firebase web app configuration. These client values are public; Firestore rules protect data.
 export const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_FIREBASE_APP_ID"
+  apiKey: "AIzaSyAq7k6JXxhxq0TLbpFX8ExVrSmWmg5wSuE",
+  authDomain: "nts-technologies.firebaseapp.com",
+  projectId: "nts-technologies",
+  storageBucket: "nts-technologies.firebasestorage.app",
+  messagingSenderId: "447717027374",
+  appId: "1:447717027374:web:1fdd8e1c04b7d2e62eb9bf"
 };
 
-// Use the exact email address of the admin account created in Firebase Authentication.
-export const ADMIN_EMAIL = "YOUR_ADMIN_EMAIL@example.com";
+export const ADMIN_EMAIL = 'ntstechnologiessystems@gmail.com';

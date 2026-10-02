@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
-Sitemap: https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY/sitemap.xml
+Sitemap: https://ntstechnologiessolutions-sketch.github.io/nts-technologies/sitemap.xml
