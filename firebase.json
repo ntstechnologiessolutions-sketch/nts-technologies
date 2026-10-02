@@ -1,5 +1,20 @@
 {
   "firestore": {
     "rules": "firestore.rules"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "README.md",
+      "firestore.rules",
+      ".git/**",
+      "node_modules/**",
+      ".lighthouse*",
+      "**/.*",
+      "firebase-debug.log",
+      "firebase-debug.*.log"
+    ]
   }
 }

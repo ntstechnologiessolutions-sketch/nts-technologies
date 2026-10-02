@@ -8,7 +8,7 @@ const dataStatus = document.querySelector("#data-status");
 const rows = document.querySelector("#enquiry-rows");
 const emptyState = document.querySelector("#empty-state");
 const dialog = document.querySelector("#message-dialog");
-const configured = !firebaseConfig.apiKey.startsWith("YOUR_") && !firebaseConfig.projectId.startsWith("YOUR_") && !ADMIN_EMAIL.startsWith("YOUR_");
+const configured = !firebaseConfig.apiKey.startsWith("YOUR_") && !firebaseConfig.projectId.startsWith("YOUR_") && ADMIN_EMAILS.length > 0;
 let auth;
 let db;
 let firebaseModules;
