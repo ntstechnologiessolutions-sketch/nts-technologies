@@ -1,4 +1,4 @@
-import { firebaseConfig, ADMIN_EMAILS } from "./firebase-config.js";
+import { firebaseConfig, ADMIN_EMAILS } from "./firebase-config.js?v=c258e7c";
 
 const loginPanel = document.querySelector("#login-panel");
 const dashboard = document.querySelector("#dashboard");
