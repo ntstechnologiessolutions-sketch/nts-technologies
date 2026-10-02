@@ -31,8 +31,8 @@ Open `http://localhost:8000`. Without Firebase configured, the website still pre
 The Firebase project `nts-technologies` and its Web app are created on the free **Spark** plan. The Standard Firestore `(default)` database is in `asia-south1` (Mumbai), starts in production mode, and uses the rules in `firestore.rules`. Email/Password sign-in is enabled. No Cloud Functions, paid hosting, or billing account is configured.
 
 1. The generated public Web SDK configuration is in `js/firebase-config.js`. It is safe for client-side use; never add passwords, service-account keys, or private credentials to this repository.
-2. The rules authorize only verified `ntstechnologiessystems@gmail.com` users to read, update, or delete enquiries. Anyone may create a validated enquiry with status `new`.
-3. Create the admin account in **Authentication → Users**. Set your own password directly in the Firebase Console and verify the email. Do not put the password in this repository.
+2. The rules authorize only the authenticated `ntstechnologiessystems@gmail.com` account to read, update, or delete enquiries. Anyone may create a validated enquiry with status `new`.
+3. Create the admin account in **Authentication → Users**. Set your own password directly in the Firebase Console. Do not put the password in this repository.
 4. `localhost` is already an authorized domain. Add `ntstechnologiessolutions-sketch.github.io` in **Authentication → Settings → Authorized domains** if it is not present.
 5. Test a public enquiry, the live admin inbox, a status change, and that a signed-out visitor cannot read the collection.
 

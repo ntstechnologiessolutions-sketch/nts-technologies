@@ -79,8 +79,8 @@ function showError(error) {
 }
 
 async function showDashboard(user) {
-  if (user.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase() || !user.emailVerified) {
-    setLoginMessage(user.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase() ? "Verify this account's email address before opening the admin dashboard." : "This account is not authorised for the admin dashboard.");
+  if (user.email?.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    setLoginMessage("This account is not authorised for the admin dashboard.");
     await firebaseModules.signOut(auth);
     return;
   }
