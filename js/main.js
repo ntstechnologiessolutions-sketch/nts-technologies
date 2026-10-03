@@ -208,12 +208,33 @@ function initInteractions() {
     input.value = Math.max(1, Number(input.value) + (button.textContent.trim() === "+" ? 1 : -1));
   }));
   document.querySelectorAll(".order-tab").forEach((button) => button.addEventListener("click", () => {
-    document.querySelectorAll(".order-tab").forEach((tab) => tab.classList.toggle("selected", tab === button));
+    document.querySelectorAll(".order-tab").forEach((tab) => {
+      const selected = tab === button;
+      tab.classList.toggle("selected", selected);
+      tab.setAttribute("aria-pressed", String(selected));
+    });
     document.querySelector(".demo-order-button").classList.toggle("sell-selected", button.textContent.trim() === "Sell");
   }));
   document.querySelectorAll(".chart-action").forEach((button) => button.addEventListener("click", () => {
-    document.querySelectorAll(".chart-action").forEach((item) => item.classList.toggle("active", item === button));
+    document.querySelectorAll(".chart-action").forEach((item) => {
+      const selected = item === button;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
   }));
+  document.querySelector(".watchlist .widget-heading button")?.addEventListener("click", (event) => {
+    const button = event.currentTarget;
+    const hidden = document.querySelector(".watchlist").classList.toggle("hide-daily-change");
+    button.setAttribute("aria-pressed", String(hidden));
+    button.setAttribute("aria-label", hidden ? "Show daily changes" : "Hide daily changes");
+    button.title = hidden ? "Show daily changes" : "Hide daily changes";
+  });
+  document.querySelector(".chart-icon-btn")?.addEventListener("click", (event) => {
+    const button = event.currentTarget;
+    const expanded = document.querySelector(".trading-body").classList.toggle("chart-expanded");
+    button.setAttribute("aria-pressed", String(expanded));
+    button.setAttribute("aria-label", expanded ? "Collapse chart" : "Expand chart");
+  });
   document.querySelector(".demo-order-button")?.addEventListener("click", () => {
     const button = document.querySelector(".demo-order-button");
     const original = button.innerHTML;

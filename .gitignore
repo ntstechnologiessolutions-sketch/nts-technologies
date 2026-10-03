@@ -4,3 +4,8 @@ Thumbs.db
 *.log
 .firebase/
 .lighthouse*
+
+# Internal social media asset kit - keep local, never publish or push
+instagram/
+instagram/.browser-profile/
+instagram/node_modules/
