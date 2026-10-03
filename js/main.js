@@ -44,7 +44,7 @@ function renderTestimonials() {
   if (!grid || !testimonials.length) return;
   emptyNote?.remove();
   grid.innerHTML = testimonials.map((item) => `
-    <figure class="testimonial-card"><blockquote>“${escapeHTML(item.quote)}”</blockquote>
+    <figure class="testimonial-card reveal"><blockquote>“${escapeHTML(item.quote)}”</blockquote>
       <figcaption><b>${escapeHTML(item.name)}</b><span>${escapeHTML(item.role)}</span></figcaption></figure>`).join("");
 }
 
