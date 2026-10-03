@@ -298,10 +298,18 @@ img { display: block; max-width: 100%; }
 .form-toast-message { color: #AAB4C3; font-size: 11px; line-height: 1.45; overflow-wrap: anywhere; }
 .form-toast-close { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border: 0; background: transparent; color: #AAB4C3; font-size: 22px; cursor: pointer; }
 @keyframes toast-spin { to { transform: rotate(360deg); } }
+.form-status:empty { display: none; }
+.privacy-note { margin-top: 14px; }
 
 @media (max-width: 760px) {
-  .form-submit { width: auto; min-width: 190px; min-height: 48px; align-self: flex-end; justify-content: space-between; padding: 0 16px; border-radius: 4px; font-size: 14px; box-shadow: 0 3px 10px rgba(242,107,42,.12); }
-  .form-submit:active, .form-submit.is-pressed { box-shadow: 0 0 0 2px rgba(242,107,42,.12), 0 5px 12px rgba(242,107,42,.17); }
+  .form-submit { width: auto; min-width: 190px; min-height: 48px; align-self: flex-end; justify-content: space-between; padding: 0 12px 0 17px; border: 1px solid rgba(242,107,42,.68); border-radius: 6px; background: transparent; color: var(--cream); font-size: 14px; box-shadow: none; }
+  .form-submit:hover { border-color: var(--orange); background: rgba(242,107,42,.08); color: var(--cream); }
+  .form-submit:active, .form-submit.is-pressed { transform: translate(var(--mag-x, 0px), var(--mag-y, 0px)) scale(.99); background: var(--orange); color: var(--night); box-shadow: 0 0 0 2px rgba(242,107,42,.12); }
+  .form-submit > span[aria-hidden="true"] { width: 28px; height: 28px; flex-basis: 28px; border-radius: 50%; background: rgba(242,107,42,.16); color: var(--orange); }
+  .form-submit > span[aria-hidden="true"]::before { top: 13px; left: 5px; width: 16px; border-width: 1.5px; }
+  .form-submit > span[aria-hidden="true"]::after { top: 9px; right: 5px; width: 8px; height: 8px; border-width: 1.5px 1.5px 0 0; }
+  .form-submit:active > span[aria-hidden="true"], .form-submit.is-pressed > span[aria-hidden="true"] { background: rgba(6,14,30,.12); color: var(--night); }
+  .privacy-note { text-align: right; }
   .form-toast { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); left: 12px; width: calc(100% - 24px); }
 }
 
