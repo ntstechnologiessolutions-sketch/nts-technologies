@@ -337,20 +337,47 @@ function initEnquiryForm() {
   const form = document.querySelector("#enquiry-form");
   const status = form?.querySelector(".form-status");
   if (!form || !status) return;
+  const toast = document.querySelector("#form-toast");
+  const toastTitle = toast?.querySelector(".form-toast-title");
+  const toastMessage = toast?.querySelector(".form-toast-message");
   const storageKey = "nts-enquiry-last-submit";
-  const showStatus = (message, type) => { status.textContent = message; status.dataset.state = type; };
+  let toastTimeout;
+  const dismissToast = () => {
+    toast?.classList.remove("is-visible");
+    toast?.setAttribute("aria-hidden", "true");
+  };
+  const showToast = (message, type) => {
+    if (!toast || !message) { dismissToast(); return; }
+    window.clearTimeout(toastTimeout);
+    toast.dataset.state = type;
+    toastTitle.textContent = type === "success" ? "Enquiry received" : type === "error" ? "Let's try that again" : "Sending enquiry";
+    toastMessage.textContent = message;
+    toast.setAttribute("aria-hidden", "false");
+    toast.classList.add("is-visible");
+    if (type !== "loading") toastTimeout = window.setTimeout(dismissToast, 5200);
+  };
+  const showStatus = (message, type) => {
+    status.textContent = message;
+    status.dataset.state = type;
+    if (message) showToast(message, type);
+    else dismissToast();
+  };
+  toast?.querySelector(".form-toast-close")?.addEventListener("click", dismissToast);
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    const submitButton = form.querySelector(".form-submit");
+    submitButton?.classList.add("is-pressed");
+    window.setTimeout(() => submitButton?.classList.remove("is-pressed"), 480);
     if (!form.reportValidity()) return;
     if (form.elements.website.value) { showStatus("Thanks. Your enquiry has been received.", "success"); form.reset(); return; }
     const lastSubmit = Number(localStorage.getItem(storageKey) || 0);
     const remaining = 30000 - (Date.now() - lastSubmit);
     if (remaining > 0) { showStatus(`Please wait ${Math.ceil(remaining / 1000)} seconds before sending another enquiry.`, "error"); return; }
-    const submitButton = form.querySelector(".form-submit");
     const originalLabel = submitButton.innerHTML;
     submitButton.disabled = true;
     submitButton.querySelector("span:first-child").textContent = "Sending...";
     showStatus("", "");
+    showToast("Your details are being sent securely.", "loading");
     const values = new FormData(form);
     const enquiry = {
       name: String(values.get("name") || "").trim(), email: String(values.get("email") || "").trim(),

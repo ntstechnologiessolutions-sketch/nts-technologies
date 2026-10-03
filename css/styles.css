@@ -275,3 +275,32 @@ img { display: block; max-width: 100%; }
   .field input::placeholder, .field textarea::placeholder { font-size: 16px; }
 }
 
+.form-submit { position: relative; overflow: hidden; box-shadow: 0 8px 22px rgba(242,107,42,.18); transition: transform .18s ease, box-shadow .25s ease, background .25s ease; }
+.form-submit:active, .form-submit.is-pressed { transform: translate(var(--mag-x, 0px), var(--mag-y, 0px)) scale(.97); box-shadow: 0 0 0 4px rgba(242,107,42,.18), 0 10px 28px rgba(242,107,42,.28); }
+.form-submit::before { position: absolute; top: 50%; left: 50%; width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,.24); content: ""; opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0); }
+.form-submit.is-pressed::before { animation: submit-ripple .48s ease-out; }
+@keyframes submit-ripple { 25% { opacity: .8; } 100% { opacity: 0; transform: translate(-50%, -50%) scale(16); } }
+.form-submit > span { position: relative; z-index: 1; }
+.form-submit > span[aria-hidden="true"] { display: block; width: 20px; height: 16px; flex: 0 0 20px; overflow: hidden; font-size: 0; transition: transform .2s ease; }
+.form-submit > span[aria-hidden="true"]::before { position: absolute; top: 7px; left: 1px; width: 14px; border-top: 2px solid currentColor; content: ""; }
+.form-submit > span[aria-hidden="true"]::after { position: absolute; top: 3px; right: 2px; width: 8px; height: 8px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; content: ""; transform: rotate(45deg); }
+.form-submit:hover > span[aria-hidden="true"] { transform: translateX(3px); }
+.form-toast { position: fixed; z-index: 1200; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); left: 16px; display: flex; width: min(440px, calc(100% - 32px)); min-height: 76px; align-items: center; gap: 13px; margin: 0 auto; padding: 14px 16px; border: 1px solid rgba(244,241,236,.16); border-radius: 12px; background: #101D30; box-shadow: 0 16px 48px rgba(0,0,0,.38); opacity: 0; pointer-events: none; transform: translateY(18px); transition: opacity .25s ease, transform .3s cubic-bezier(.2,.8,.2,1), visibility .25s; visibility: hidden; }
+.form-toast.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); visibility: visible; }
+.form-toast-icon { position: relative; display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border: 1px solid rgba(242,107,42,.45); border-radius: 50%; color: var(--orange); }
+.form-toast-icon::before { width: 13px; height: 13px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; content: ""; animation: toast-spin .8s linear infinite; }
+.form-toast[data-state="success"] .form-toast-icon { border-color: rgba(113,189,154,.5); color: #8DD1AE; }
+.form-toast[data-state="success"] .form-toast-icon::before { width: 7px; height: 12px; border: solid currentColor; border-width: 0 2px 2px 0; border-radius: 0; animation: none; transform: rotate(45deg) translate(-1px, -1px); }
+.form-toast[data-state="error"] .form-toast-icon { border-color: rgba(227,151,143,.5); color: #E2978F; }
+.form-toast[data-state="error"] .form-toast-icon::before { width: auto; height: auto; border: 0; border-radius: 0; content: "!"; font-size: 17px; font-weight: 700; animation: none; }
+.form-toast-copy { display: grid; min-width: 0; flex: 1; gap: 3px; }
+.form-toast-title { color: var(--cream); font-size: 13px; font-weight: 600; line-height: 1.3; }
+.form-toast-message { color: #AAB4C3; font-size: 11px; line-height: 1.45; overflow-wrap: anywhere; }
+.form-toast-close { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border: 0; background: transparent; color: #AAB4C3; font-size: 22px; cursor: pointer; }
+@keyframes toast-spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 760px) {
+  .form-submit { width: 100%; min-height: 58px; justify-content: space-between; padding: 0 20px; font-size: 16px; }
+  .form-toast { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); left: 12px; width: calc(100% - 24px); }
+}
+
